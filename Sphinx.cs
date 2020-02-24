@@ -1,36 +1,37 @@
 using System;
+using System.Collections.Generic;
 
 class Sphinx
 {
   static void Main()
   {
-   Console.WriteLine("Whats big, red, and eats rocks?");
-   string userAnswer = Console.ReadLine();
-   if (userAnswer == ("The big, red, rock eater"))
-   {
-       Console.WriteLine("Where are my hands?");
-       string userAnswer2 = Console.ReadLine();
-       if (userAnswer2 == ("In my pockets"))
-       {
-    Console.WriteLine("Whats at the end of a rainbow?");
-           string userAnswer3 = Console.ReadLine();
-           if (userAnswer3 == ("Pot of gold"))
-           {
-               Console.WriteLine("Thats correct! You dont have to die today");
-           }
-           else
-           {
-               Console.WriteLine("Prepare to die! *You are eaten by the Sphinx*");
-           }
-       }
-       else
-       {
-       Console.WriteLine("Prepare to die! *You are eaten by the Sphinx*");
-       }
-   }
-   else 
-   {
-       Console.WriteLine("Prepare to die! *You are eaten by the Sphinx*");
-   }
-  }
+		AskRiddle();
+		bool isCorrect = true;
+		while(isCorrect)
+		{
+			isCorrect = AskRiddle();
+		}
+		Console.WriteLine("You lose.");
+	}
+
+	static bool AskRiddle()
+	{
+  string [] riddle = {"Whats big, red, and eats rocks?", "Where are my hands?", "Whats at the end of a rainbow?"};
+	string [] answer = {"The big, red, rock eater", "In my pockets", "Pot of gold"};
+
+	Random rnd = new Random();
+	int randomIndex = rnd.Next(0,3);
+  Console.WriteLine(riddle[randomIndex]);
+  string userAnswer = Console.ReadLine();
+
+	 if (userAnswer == answer[randomIndex])
+	 {
+		return true;
+	 }
+	 else
+	 {
+		return false;
+	 }
+
+	}
 }
